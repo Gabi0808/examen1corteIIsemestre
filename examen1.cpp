@@ -19,7 +19,7 @@ en la lista. La búsqueda debe serBinaria*/
 using namespace std;
 
 void copyArray(int originArray[], int destinyArray[], int size);
-void deleteDupes(int array[]);
+void deleteDupes(int array[], int n);
 void shellSort(int list[], int n);
 void generateRandomNumbers(int list[]);
 void bubbleSort(int list[], int n);
@@ -36,7 +36,7 @@ int main()
 
     int choice, choice2;
 
-    while (true)
+    while (choice!=4)
     {
         printMenu();
         cin >> choice;
@@ -45,12 +45,12 @@ int main()
         {
         case 1:
             copyArray(dupedNumbers, deleteNumbersCopy, 10);
-            deleteDupes(deleteNumbersCopy);
+            deleteDupes(deleteNumbersCopy, 10);
             break;
         case 2:
             copyArray(dupedNumbers, orderedCopy, 10);
             shellSort(orderedCopy, 10);
-            deleteDupes(orderedCopy);
+            deleteDupes(orderedCopy, 10);
             break;
         case 3:
 
@@ -134,7 +134,7 @@ void shellSort(int list[], int n)
             {
                 k = j + intervalo;
                 if (list[j] <= list[k])
-                    j = -1; /* así termina el bucle, par ordenado */
+                    j = -1;
                 else
                 {
                     double temp;
