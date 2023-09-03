@@ -13,6 +13,8 @@ c) Buscar si existe el número x (leído del teclado)
 en la lista. La búsqueda debe serBinaria*/
 #include <iostream>
 #define MAX 10
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -87,4 +89,18 @@ void shellSort(int array[])
         }
         intervalo = intervalo / 2;
     }
+}
+
+void generateRandomNumbers(){
+
+int numberList[999];
+srand(static_cast<unsigned>(time(nullptr)));
+
+for (int i = 0; i < 999; i++)
+{
+    int randomNumber = rand() % 20001;
+    numberList[i] = randomNumber;
+}
+
+
 }
