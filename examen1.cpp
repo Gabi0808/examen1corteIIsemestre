@@ -24,8 +24,47 @@ void shellSort(int array[]);
 void generateRandomNumbers();
 void sortNumbersList(int list[]);
 void binarySearchNumber(char number, int list[]);
+void printMenu();
 
 int main()
+{
+    int dupedNumbers[10] = {4, 7, 11, 4, 9, 5, 11, 7, 3, 5};
+    int deleteNumbersCopy[10], orderedCopy[10];
+
+    int choice;
+
+    while (true)
+    {
+        printMenu();
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+            copyArray(dupedNumbers, deleteNumbersCopy);
+            deleteDupes(deleteNumbersCopy);
+            break;
+        case 2:
+            generateRandomNumbers();
+            break;
+        case 3:
+            copyArray(dupedNumbers, orderedCopy);
+            shellSort(orderedCopy);
+            deleteDupes(orderedCopy);
+            break;
+        case 4:
+            cout << "Saliendo del programa..." << endl;
+            return 0;
+        default:
+            cout << "Opción no válida. Por favor, elige una opción válida." << endl;
+            break;
+        }
+    }
+
+    return 0;
+}
+
+int funciones()
 {
     int dupedNumbers[10] = {4, 7, 11, 4, 9, 5, 11, 7, 3, 5};
     int deleteNumbersCopy[10], orderedCopy[10];
@@ -44,7 +83,6 @@ void copyArray(int originArray[], int destinyArray[])
     {
         destinyArray[i] = originArray[i];
     }
-
 }
 
 void deleteDupes(int array[])
@@ -64,7 +102,7 @@ void deleteDupes(int array[])
 
 void shellSort(int array[])
 {
- 
+
     int intervalo, i, j, k;
     intervalo = 10 / 2;
     while (intervalo > 0)
@@ -91,16 +129,27 @@ void shellSort(int array[])
     }
 }
 
-void generateRandomNumbers(){
-
-int numberList[999];
-srand(static_cast<unsigned>(time(nullptr)));
-
-for (int i = 0; i < 999; i++)
+void generateRandomNumbers()
 {
-    int randomNumber = rand() % 20001;
-    numberList[i] = randomNumber;
+
+    int numberList[999];
+    srand(static_cast<unsigned>(time(nullptr)));
+
+    for (int i = 0; i < 999; i++)
+    {
+        int randomNumber = rand() % 20001;
+        numberList[i] = randomNumber;
+    }
 }
 
-
+void printMenu()
+{
+    cout << "Menu de opciones:" << endl;
+    cout << "1. Eliminar elementos duplicados" << endl;
+    cout << "2. Generar lista de numeros aleatorios" << endl;
+    cout << "3. Ordenar y eliminar duplicados en la lista original" << endl;
+    cout << "4. Buscar numero en la lista ordenada" << endl;
+    cout << "5. Salir" << endl;
+    cout << "Selecciona una opcion: ";
 }
+
