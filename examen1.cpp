@@ -26,8 +26,47 @@ void bubbleSort(int list[], int n);
 void insertionSort(int list[], int n);
 void exchangeSort(int list[], int n);
 void binarySearchNumber(char number, int list[]);
+void printMenu();
 
 int main()
+{
+    int dupedNumbers[10] = {4, 7, 11, 4, 9, 5, 11, 7, 3, 5};
+    int deleteNumbersCopy[10], orderedCopy[10];
+
+    int choice;
+
+    while (true)
+    {
+        printMenu();
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+            copyArray(dupedNumbers, deleteNumbersCopy);
+            deleteDupes(deleteNumbersCopy);
+            break;
+        case 2:
+            generateRandomNumbers();
+            break;
+        case 3:
+            copyArray(dupedNumbers, orderedCopy);
+            shellSort(orderedCopy);
+            deleteDupes(orderedCopy);
+            break;
+        case 4:
+            cout << "Saliendo del programa..." << endl;
+            return 0;
+        default:
+            cout << "Opción no válida. Por favor, elige una opción válida." << endl;
+            break;
+        }
+    }
+
+    return 0;
+}
+
+int funciones()
 {
     int dupedNumbers[10] = {4, 7, 11, 4, 9, 5, 11, 7, 3, 5};
     int deleteNumbersCopy[10], orderedCopy[10];
@@ -68,6 +107,7 @@ void deleteDupes(int array[])
 void shellSort(int list[], int n)
 {
 
+
     int intervalo, i, j, k;
     intervalo = 10 / 2;
     while (intervalo > 0)
@@ -96,7 +136,11 @@ void shellSort(int list[], int n)
 
 void generateRandomNumbers()
 {
+void generateRandomNumbers()
+{
 
+    int numberList[999];
+    srand(static_cast<unsigned>(time(nullptr)));
     int numberList[999];
     srand(static_cast<unsigned>(time(nullptr)));
 
@@ -144,15 +188,5 @@ void insertionSort(int list[], int n)
 void exchangeSort(int list[], int n)
 {
 
-    int i, j;
 
-    for (i = 0; i <= n - 2; i++)
-        for (j = i + 1; j <= n - 1; j++)
-            if (list[i] > list[j])
-            {
-                int aux;
-                aux = list[i];
-                list[i] = list[j];
-                list[j] = aux;
-            }
 }
