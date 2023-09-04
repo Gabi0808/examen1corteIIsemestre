@@ -36,8 +36,8 @@ int main()
     int dupedNumbers[10] = {4, 7, 11, 4, 9, 5, 11, 7, 3, 5};
     int numberList[MAX], exchangeList[MAX], bubbleList[MAX], insertionList[MAX], shellList[MAX];
     int deleteNumbersCopy[10], orderedCopy[10];
-
-    int choice, choice2, searchedNumber, results;
+    int results = 0;
+    int choice, choice2, searchedNumber;
     unsigned t0, t1;
     t0 = clock();
     while (choice != 4)
@@ -65,7 +65,7 @@ int main()
         case 3:
 
             generateRandomNumbers(numberList);
-            while (choice2 != 6)
+            while (choice2 != 7)
             {
                 printFunctionSelected();
                 cin >> choice2;
@@ -99,16 +99,20 @@ int main()
                     printArray(numberList, MAX);
                     break;
                 case 6:
+                    searchedNumber = 0;
                     cout << "Ingresa el numero a buscar" << endl;
                     cin >> searchedNumber;
                     shellSort(shellList, MAX);
                     results = binarySearchNumber(searchedNumber, shellList, MAX);
-                    if (results == -1)
+                    if (results != -1)
                     {
-                        cout << "No se encontro el elemento en la lista" << endl;
-                        break;
+                        cout << "El elemento " << searchedNumber << " se encuentra en el índice " << results << endl;
                     }
-                    cout << "El numero se encuentra en la lista, en el indice: " << results << endl;
+                    else
+                    {
+                        cout << "El elemento " << searchedNumber << " no se encontró en el arreglo." << endl;
+                    }
+                    system("pause");
 
                     break;
                 case 7:
@@ -122,12 +126,12 @@ int main()
 
             break;
         case 4:
-            cout << "Saliendo del programa..." << endl;
+            cout << "Saliendo del menu..." << endl;
             break;
         default:
             cout << "Opcion no valida. Por favor, elige una opcion valida." << endl;
             break;
-            system ("cls");
+            system("cls");
         }
     }
     t1 = clock();
@@ -145,7 +149,7 @@ void copyArray(int originArray[], int destinyArray[], int size)
 }
 void deleteDupes(int array[], int n)
 {
-
+    auto inicio = chrono::high_resolution_clock::now();
     for (int i = 0; i < n; i++)
     {
         for (int j = i + 1; j < n; j++)
@@ -156,6 +160,9 @@ void deleteDupes(int array[], int n)
             }
         }
     }
+    auto fin = chrono::high_resolution_clock::now();
+    chrono::duration<double, nano> tiempo_promedio = fin - inicio;
+    cout << "Tiempo promedio de ejecucion: " << tiempo_promedio.count() << " nanosegundos" << endl;
 }
 void shellSort(int list[], int n)
 {
@@ -262,6 +269,7 @@ void exchangeSort(int list[], int n)
 }
 void printMenu()
 {
+    system("cls");
     cout << "\nMenu examen 1er corte II Semestre" << endl;
     cout << "Seleccione una opcion: " << endl;
     cout << "1. Eliminar numeros duplicados en un arreglo desordenado." << endl;
@@ -271,6 +279,7 @@ void printMenu()
 }
 void printFunctionSelected()
 {
+    system("cls");
     cout << "Con que metodo desea ordenar los numeros?" << endl;
     cout << "1. Ordenar lista de numeros aleatorios por intercambio." << endl;
     cout << "2. Ordenar lista de numeros aleatorios por metodo burbuja." << endl;
@@ -288,28 +297,26 @@ void printArray(int array[], int size)
     {
         cout << array[i] << endl;
     }
+    system("pause");
 }
 
 int binarySearchNumber(int key, int list[], int size)
 {
-    auto inicio = chrono::high_resolution_clock::now();
+
     int central, bajo, alto;
     int valorCentral;
     bajo = 0;
     alto = size - 1;
     while (bajo <= alto)
     {
-        central = (bajo + alto) / 2;
-        valorCentral = list[central];
+        central = (bajo + alto) / 2;  /* índice de elemento central */
+        valorCentral = list[central]; /* valor del índice central */
         if (key == valorCentral)
-            return central;
+            return central; /* encontrado, devuelve posición */
         else if (key < valorCentral)
-            alto = central - 1;
+            alto = central - 1; /* ir a sublist inferior */
         else
-            bajo = central + 1;
+            bajo = central + 1; /* ir a sublist superior */
     }
-    auto fin = chrono::high_resolution_clock::now();
-    chrono::duration<double, nano> tiempo_promedio = fin - inicio;
-    cout << "Tiempo promedio de ejecucion: " << tiempo_promedio.count() << " nanosegundos" << endl;
-    return -1;
+    return -1; /* elemento no encontrado */
 }
