@@ -50,11 +50,17 @@ int main()
         case 1:
             copyArray(dupedNumbers, deleteNumbersCopy, 10);
             deleteDupes(deleteNumbersCopy, 10);
+            cout << "\nArreglo con numeros duplicados eliminados: ";
+            printArray(deleteNumbersCopy, 10);
+            system("pause");
             break;
         case 2:
             copyArray(dupedNumbers, orderedCopy, 10);
             shellSort(orderedCopy, 10);
             deleteDupes(orderedCopy, 10);
+            cout << "\nArreglo ordenado con numeros duplicados eliminados: ";
+            printArray(orderedCopy, 10);
+            system("pause");
             break;
         case 3:
 
@@ -119,8 +125,9 @@ int main()
             cout << "Saliendo del programa..." << endl;
             break;
         default:
-            cout << "Opción no válida. Por favor, elige una opción válida." << endl;
+            cout << "Opcion no valida. Por favor, elige una opcion valida." << endl;
             break;
+            system ("cls");
         }
     }
     t1 = clock();
@@ -179,7 +186,7 @@ void shellSort(int list[], int n)
     }
     auto fin = chrono::high_resolution_clock::now();
     chrono::duration<double, nano> tiempo_promedio = fin - inicio;
-    cout << "Tiempo promedio de ejecución: " << tiempo_promedio.count() << " nanosegundos" << endl;
+    cout << "Tiempo promedio de ejecucion: " << tiempo_promedio.count() << " nanosegundos" << endl;
 }
 
 void generateRandomNumbers(int list[])
@@ -213,7 +220,7 @@ void bubbleSort(int list[], int n)
     }
     auto fin = chrono::high_resolution_clock::now();
     chrono::duration<double, nano> tiempo_promedio = fin - inicio;
-    cout << "Tiempo promedio de ejecución: " << tiempo_promedio.count() << " nanosegundos" << endl;
+    cout << "Tiempo promedio de ejecucion: " << tiempo_promedio.count() << " nanosegundos" << endl;
 }
 void insertionSort(int list[], int n)
 {
@@ -233,7 +240,7 @@ void insertionSort(int list[], int n)
     }
     auto fin = chrono::high_resolution_clock::now();
     chrono::duration<double, nano> tiempo_promedio = fin - inicio;
-    cout << "Tiempo promedio de ejecución: " << tiempo_promedio.count() << " nanosegundos" << endl;
+    cout << "Tiempo promedio de ejecucion: " << tiempo_promedio.count() << " nanosegundos" << endl;
 }
 void exchangeSort(int list[], int n)
 {
@@ -251,11 +258,11 @@ void exchangeSort(int list[], int n)
             }
     auto fin = chrono::high_resolution_clock::now();
     chrono::duration<double, nano> tiempo_promedio = fin - inicio;
-    cout << "Tiempo promedio de ejecución: " << tiempo_promedio.count() << " nanosegundos" << endl;
+    cout << "Tiempo promedio de ejecucion: " << tiempo_promedio.count() << " nanosegundos" << endl;
 }
 void printMenu()
 {
-    cout << "Menu examen 1er corte II Semestre" << endl;
+    cout << "\nMenu examen 1er corte II Semestre" << endl;
     cout << "Seleccione una opcion: " << endl;
     cout << "1. Eliminar numeros duplicados en un arreglo desordenado." << endl;
     cout << "2. Eliminar numeros duplicados en un arreglo ordenado." << endl;
@@ -303,6 +310,6 @@ int binarySearchNumber(int key, int list[], int size)
     }
     auto fin = chrono::high_resolution_clock::now();
     chrono::duration<double, nano> tiempo_promedio = fin - inicio;
-    cout << "Tiempo promedio de ejecución: " << tiempo_promedio.count() << " nanosegundos" << endl;
+    cout << "Tiempo promedio de ejecucion: " << tiempo_promedio.count() << " nanosegundos" << endl;
     return -1;
 }
