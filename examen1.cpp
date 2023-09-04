@@ -302,7 +302,8 @@ void printArray(int array[], int size)
 
 int binarySearchNumber(int key, int list[], int size)
 {
-
+    unsigned t0, t1;
+    t0 = clock();
     int central, bajo, alto;
     int valorCentral;
     bajo = 0;
@@ -318,5 +319,8 @@ int binarySearchNumber(int key, int list[], int size)
         else
             bajo = central + 1; /* ir a sublist superior */
     }
+    t1 = clock();
+    double time = (double(t0 - t1) / CLOCKS_PER_SEC);
+    cout << "Operacion realizada en " << time << " nanosegundos. " << endl;
     return -1; /* elemento no encontrado */
 }
