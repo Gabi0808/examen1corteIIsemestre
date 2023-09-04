@@ -106,11 +106,11 @@ int main()
                     results = binarySearchNumber(searchedNumber, shellList, MAX);
                     if (results != -1)
                     {
-                        cout << "El elemento " << searchedNumber << " se encuentra en el índice " << results << endl;
+                        cout << "El elemento " << searchedNumber << " se encuentra en el indice " << results << endl;
                     }
                     else
                     {
-                        cout << "El elemento " << searchedNumber << " no se encontró en el arreglo." << endl;
+                        cout << "El elemento " << searchedNumber << " no se encontro en el arreglo." << endl;
                     }
                     system("pause");
 
@@ -136,7 +136,7 @@ int main()
     }
     t1 = clock();
     double time = (double(t0 - t1) / CLOCKS_PER_SEC);
-    cout << "El tiempo transcurrido es de " << time << endl;
+    cout << "El tiempo transcurrido es de " << time << " nanosegundos. " << endl;
     return 0;
 }
 
