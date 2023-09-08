@@ -29,6 +29,7 @@ void exchangeSort(int list[], int n);
 int binarySearchNumber(int key, int list[], int size);
 void printMenu();
 void printArray(int array[], int size);
+void printDupedArray(int array[], int size);
 void printFunctionSelected();
 
 int main()
@@ -38,8 +39,9 @@ int main()
     int deleteNumbersCopy[10], orderedCopy[10];
     int results = 0;
     int choice, choice2, searchedNumber;
-    unsigned t0, t1;
-    t0 = clock();
+
+    auto start = chrono::steady_clock::now();
+
     while (choice != 4)
     {
         printMenu();
@@ -49,17 +51,22 @@ int main()
         {
         case 1:
             copyArray(dupedNumbers, deleteNumbersCopy, 10);
+            cout << "Arreglo con numeros duplicados: "<< endl;
+            printArray(dupedNumbers, 10);
+            cout << "\nArreglo con numeros duplicados eliminados: "<<endl;
             deleteDupes(deleteNumbersCopy, 10);
-            cout << "\nArreglo con numeros duplicados eliminados: ";
-            printArray(deleteNumbersCopy, 10);
+            printDupedArray(deleteNumbersCopy, 10);
             system("pause");
             break;
         case 2:
             copyArray(dupedNumbers, orderedCopy, 10);
+            cout << "Arreglo con numeros duplicados: "<< endl;
+            printArray(dupedNumbers, 10);
+            cout << "\nArreglo ordenado con numeros duplicados eliminados: "<<endl;
+            cout << "Tiempo de ordenamiento: "<<endl;
             shellSort(orderedCopy, 10);
             deleteDupes(orderedCopy, 10);
-            cout << "\nArreglo ordenado con numeros duplicados eliminados: ";
-            printArray(orderedCopy, 10);
+            printDupedArray(orderedCopy, 10);
             system("pause");
             break;
         case 3:
@@ -134,9 +141,10 @@ int main()
             system("cls");
         }
     }
-    t1 = clock();
-    double time = (double(t0 - t1) / CLOCKS_PER_SEC);
-    cout << "El tiempo transcurrido es de " << time << " nanosegundos. " << endl;
+    auto end1 = chrono::steady_clock::now();
+    cout << "Tiempo transcurrido en segundos: "
+         << chrono::duration_cast<chrono::seconds>(end1 - start).count()
+         << " s" << endl;
     return 0;
 }
 
@@ -149,7 +157,7 @@ void copyArray(int originArray[], int destinyArray[], int size)
 }
 void deleteDupes(int array[], int n)
 {
-    auto inicio = chrono::high_resolution_clock::now();
+    auto start = chrono::steady_clock::now();
     for (int i = 0; i < n; i++)
     {
         for (int j = i + 1; j < n; j++)
@@ -160,13 +168,14 @@ void deleteDupes(int array[], int n)
             }
         }
     }
-    auto fin = chrono::high_resolution_clock::now();
-    chrono::duration<double, nano> tiempo_promedio = fin - inicio;
-    cout << "Tiempo promedio de ejecucion: " << tiempo_promedio.count() << " nanosegundos" << endl;
+    auto end1 = chrono::steady_clock::now();
+    cout << "Tiempo transcurrido en nanosegundos: "
+         << chrono::duration_cast<chrono::nanoseconds>(end1 - start).count()
+         << " ns" << endl;
 }
 void shellSort(int list[], int n)
 {
-    auto inicio = chrono::high_resolution_clock::now();
+    auto start = chrono::steady_clock::now();
     int intervalo, i, j, k;
     intervalo = n / 2;
     while (intervalo > 0)
@@ -191,9 +200,10 @@ void shellSort(int list[], int n)
         }
         intervalo = intervalo / 2;
     }
-    auto fin = chrono::high_resolution_clock::now();
-    chrono::duration<double, nano> tiempo_promedio = fin - inicio;
-    cout << "Tiempo promedio de ejecucion: " << tiempo_promedio.count() << " nanosegundos" << endl;
+    auto end1 = chrono::steady_clock::now();
+    cout << "Tiempo transucrrido en microsegundos: "
+         << chrono::duration_cast<chrono::microseconds>(end1 - start).count()
+         << " µs" << endl;
 }
 
 void generateRandomNumbers(int list[])
@@ -208,8 +218,7 @@ void generateRandomNumbers(int list[])
 }
 void bubbleSort(int list[], int n)
 {
-
-    auto inicio = chrono::high_resolution_clock::now();
+    auto start = chrono::steady_clock::now();
     int interruptor = 1;
     int pasada, j;
     for (pasada = 0; pasada < n - 1 && interruptor; pasada++)
@@ -225,13 +234,14 @@ void bubbleSort(int list[], int n)
                 list[j + 1] = aux;
             }
     }
-    auto fin = chrono::high_resolution_clock::now();
-    chrono::duration<double, nano> tiempo_promedio = fin - inicio;
-    cout << "Tiempo promedio de ejecucion: " << tiempo_promedio.count() << " nanosegundos" << endl;
+    auto end1 = chrono::steady_clock::now();
+    cout << "Tiempo transucrrido en microsegundos: "
+         << chrono::duration_cast<chrono::microseconds>(end1 - start).count()
+         << " µs" << endl;
 }
 void insertionSort(int list[], int n)
 {
-    auto inicio = chrono::high_resolution_clock::now();
+    auto start = chrono::steady_clock::now();
     int i, j;
     int aux;
     for (i = 1; i < n; i++)
@@ -245,13 +255,14 @@ void insertionSort(int list[], int n)
         }
         list[j] = aux;
     }
-    auto fin = chrono::high_resolution_clock::now();
-    chrono::duration<double, nano> tiempo_promedio = fin - inicio;
-    cout << "Tiempo promedio de ejecucion: " << tiempo_promedio.count() << " nanosegundos" << endl;
+    auto end1 = chrono::steady_clock::now();
+    cout << "Tiempo transucrrido en microsegundos: "
+         << chrono::duration_cast<chrono::microseconds>(end1 - start).count()
+         << " µs" << endl;
 }
 void exchangeSort(int list[], int n)
 {
-    auto inicio = chrono::high_resolution_clock::now();
+    auto start = chrono::steady_clock::now();
     int i, j;
     for (i = 0; i <= n - 2; i++)
 
@@ -263,9 +274,10 @@ void exchangeSort(int list[], int n)
                 list[i] = list[j];
                 list[j] = aux;
             }
-    auto fin = chrono::high_resolution_clock::now();
-    chrono::duration<double, nano> tiempo_promedio = fin - inicio;
-    cout << "Tiempo promedio de ejecucion: " << tiempo_promedio.count() << " nanosegundos" << endl;
+    auto end1 = chrono::steady_clock::now();
+    cout << "Tiempo transucrrido en microsegundos: "
+         << chrono::duration_cast<chrono::microseconds>(end1 - start).count()
+         << " µs" << endl;
 }
 void printMenu()
 {
@@ -302,8 +314,7 @@ void printArray(int array[], int size)
 
 int binarySearchNumber(int key, int list[], int size)
 {
-    unsigned t0, t1;
-    t0 = clock();
+    auto start = chrono::steady_clock::now();
     int central, bajo, alto;
     int valorCentral;
     bajo = 0;
@@ -313,14 +324,38 @@ int binarySearchNumber(int key, int list[], int size)
         central = (bajo + alto) / 2;  /* índice de elemento central */
         valorCentral = list[central]; /* valor del índice central */
         if (key == valorCentral)
+        {
+            auto end1 = chrono::steady_clock::now();
+            cout << "Tiempo transucrrido en microsegundos: "
+                 << chrono::duration_cast<chrono::microseconds>(end1 - start).count()
+                 << " µs" << endl;
             return central; /* encontrado, devuelve posición */
+        }
         else if (key < valorCentral)
+        {
             alto = central - 1; /* ir a sublist inferior */
+        }
         else
             bajo = central + 1; /* ir a sublist superior */
     }
-    t1 = clock();
-    double time = (double(t0 - t1) / CLOCKS_PER_SEC);
-    cout << "Operacion realizada en " << time << " nanosegundos. " << endl;
+    auto end1 = chrono::steady_clock::now();
+    cout << "Tiempo transucrrido en microsegundos: "
+         << chrono::duration_cast<chrono::microseconds>(end1 - start).count()
+         << " µs" << endl;
     return -1; /* elemento no encontrado */
+}
+
+void printDupedArray(int array[], int size)
+{
+
+    cout << "Mostrando el arreglo: " << endl;
+    for (int i = 0; i < size; i++)
+    {
+       if (array[i]!=0)
+       {
+        cout << array[i] << endl;
+       }
+       
+    }
+    system("pause");
 }
